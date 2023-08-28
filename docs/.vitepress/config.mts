@@ -1,7 +1,7 @@
 /*
  * @Date 2023-08-28 23:50:54
  * @Author Zero 1203970284@qq.com
- * @LastEditTime 2023-08-29 00:54:46
+ * @LastEditTime 2023-08-29 01:12:56
  * @FilePath /Blog/docs/.vitepress/config.mts
  * Copyright (c) 2023 by Zero, All Rights Reserved.
  */
@@ -18,15 +18,21 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/" },
-      { text: "Blog", link: "/blog/philosophy/2022-6-24" },
+      { text: "Blog", link: "/blog/blog" },
       { text: "Time", link: "/time" },
     ],
-    sidebar: [
-      {
-        text: "哲学",
-        items: [{ text: "内卷 OR 摆烂", link: "/blog/philosophy/2022-6-24" }],
-      },
-    ],
+    sidebar: {
+      "/blog/": [
+        { text: "博客", link: "/blog/blog" },
+        { text: "哲学", items: [{ text: "内卷 OR 摆烂", link: "/blog/philosophy/2022-6-24" }] },
+      ],
+      "/time/": [
+        {
+          text: "2022",
+          items: [{ text: "服", link: "/time/index" }],
+        },
+      ],
+    },
 
     socialLinks: [{ icon: "github", link: "https://github.com/vuejs/vitepress" }],
   },
