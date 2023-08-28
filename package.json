@@ -5,6 +5,12 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "vitepress": "1.0.0-rc.9"
+    "gitalk": "^1.8.0",
+    "md5": "^2.3.0",
+    "vitepress": "1.0.0-rc.9",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@types/md5": "^2.3.2"
   }
 }

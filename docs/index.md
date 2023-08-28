@@ -3,15 +3,15 @@
 layout: home
 
 hero:
-  name: " Zero的栈录"
-  text: "一个博客，有缘关注，随缘更新；无论过去，不问将来"
-  tagline: My great project tagline
+  name: "Hi，I'm 文博知浅"
+  text: "Also can call me Zero"
+  tagline: I'm A Full Stack Developer & Designer using TypeScript and JavaScript
   actions:
     - theme: brand
-      text: Markdown Examples
+      text: Read Blog
       link: /markdown-examples
     - theme: alt
-      text: API Examples
+      text: Short time
       link: /api-examples
 
 features:
@@ -22,4 +22,3 @@ features:
   - title: Feature C
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
-
