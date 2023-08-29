@@ -9,10 +9,10 @@ hero:
   actions:
     - theme: brand
       text: Read Blog
-      link: /markdown-examples
+      link: /blog/blog
     - theme: alt
       text: Short time
-      link: /api-examples
+      link: /time/time
 
 features:
   - title: Feature A
