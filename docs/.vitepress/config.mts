@@ -1,7 +1,7 @@
 /*
  * @Date 2023-08-28 23:50:54
  * @Author Zero 1203970284@qq.com
- * @LastEditTime 2023-08-30 01:54:26
+ * @LastEditTime 2023-09-02 01:39:16
  * @FilePath /Blog/docs/.vitepress/config.mts
  * Copyright (c) 2023 by Zero, All Rights Reserved.
  */
@@ -21,6 +21,9 @@ export default defineConfig({
       { text: "Blog", link: "/blog/blog" },
       { text: "Time", link: "/time/time" },
     ],
+    returnToTopLabel: "返回顶部",
+    sidebarMenuLabel: "合集",
+    darkModeSwitchLabel: "夜间模式",
     sidebar: {
       "/blog/": [
         { text: "博客", link: "/blog/blog" },
@@ -67,5 +70,10 @@ export default defineConfig({
     },
 
     socialLinks: [{ icon: "github", link: "https://github.com/vuejs/vitepress" }],
+  },
+  vite: {
+    server: {
+      host: "0.0.0.0",
+    },
   },
 });
