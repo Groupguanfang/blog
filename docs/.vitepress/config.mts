@@ -1,7 +1,7 @@
 /*
  * @Date 2023-08-28 23:50:54
  * @Author Zero 1203970284@qq.com
- * @LastEditTime 2023-09-10 13:33:14
+ * @LastEditTime 2023-09-10 20:23:28
  * @FilePath /Blog/docs/.vitepress/config.mts
  * Copyright (c) 2023 by Zero, All Rights Reserved.
  */
@@ -34,6 +34,7 @@ export default defineConfig({
           items: [
             { text: "想写小说...", link: "/blog/philosophy/2022-6-27-8:09" },
             { text: "内卷 OR 摆烂", link: "/blog/philosophy/2022-6-24-11:47" },
+            { text: "纠纷", link: "/blog/philosophy/2023-9-10:20:22" },
             {
               text: "时间线",
               collapsed: true,
