@@ -1,7 +1,7 @@
 /*
  * @Date 2023-08-28 23:50:54
  * @Author Zero 1203970284@qq.com
- * @LastEditTime 2023-09-02 01:39:16
+ * @LastEditTime 2023-09-10 13:33:14
  * @FilePath /Blog/docs/.vitepress/config.mts
  * Copyright (c) 2023 by Zero, All Rights Reserved.
  */
@@ -20,6 +20,7 @@ export default defineConfig({
       { text: "Home", link: "/" },
       { text: "Blog", link: "/blog/blog" },
       { text: "Time", link: "/time/time" },
+      { text: "About", link: "/about" },
     ],
     returnToTopLabel: "返回顶部",
     sidebarMenuLabel: "合集",
@@ -62,14 +63,27 @@ export default defineConfig({
         },
       ],
       "/time/": [
+        { text: "Time", link: "/time/time" },
+        {
+          text: "2023",
+          items: [
+            { text: "诗云", link: "/time/2023/2023-7-30-15:42" },
+            { text: "巨星还没有陨落，让子弹飞一会儿。", link: "/time/2023/2023-7-25-02:36" },
+            { text: "一颗巨星，正在陨落。", link: "/time/2023/2023-7-23-03:44" },
+            { text: "第一次给公开的仓库提贡献，已经 approved 了 这不得纪念下 (-:", link: "/time/2023/2023-7-3-12:34" },
+            { text: "我坐在和他同样的位置上 像他一样笑着不知道在笑什么 但现在却只剩了我一人", link: "/time/2023/2023-7-2-22:24" },
+          ],
+        },
         {
           text: "2022",
-          items: [{ text: "服", link: "/time/index" }],
+          items: [
+            { text: "正在写一个电视版的网易云音乐", link: "/time/2022/2022-8-15-06:36" },
+            { text: "最近挺 emo 啊，以后的路不知道怎么走了", link: "/time/2022/2022-7-18-19:58" },
+          ],
         },
       ],
     },
-
-    socialLinks: [{ icon: "github", link: "https://github.com/vuejs/vitepress" }],
+    socialLinks: [{ icon: "github", link: "https://github.com/vuejs/vitepress", ariaLabel: "VitePress" }],
   },
   vite: {
     server: {
