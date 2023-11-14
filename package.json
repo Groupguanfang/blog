@@ -1,0 +1,12 @@
+{
+  "name": "blogger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "frontend": "pnpm -F frontend dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
