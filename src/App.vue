@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import HomeBackground from '~/assets/HomeBackground.vue'
 
+useHead({
+  title: '文博知浅的博客',
+})
+
 const open = (href: string) => window.open(href)
 const data = computed(() => [
   { text: 'Github', icon: 'i-simple-icons-github', href: 'https://github.com/groupguanfang' },

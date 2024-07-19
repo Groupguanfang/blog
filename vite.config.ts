@@ -110,8 +110,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
       manifest: {
-        name: 'Vitesse',
-        short_name: 'Vitesse',
+        name: '文博知浅的博客',
+        short_name: '文博知浅',
         theme_color: '#ffffff',
         icons: [
           {
