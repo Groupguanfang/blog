@@ -2,7 +2,7 @@
 import HomeBackground from '~/assets/HomeBackground.vue'
 
 useHead({
-  title: '文博知浅的博客',
+  title: '文博知浅',
 })
 
 const open = (href: string) => window.open(href)
