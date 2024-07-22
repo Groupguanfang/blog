@@ -69,7 +69,7 @@ const section = computed(() => locale.value === 'en' ? IntroductionEn.section : 
 
           <!-- 文章 -->
           <!-- eslint-disable-next-line -->
-          <h1 class="stroke_title absolute text-size-7xl text-size-7xl font-extrabold md:text-size-9xl sm:text-size-8xl op-30 dark:op-50">文章</h1>
+          <h1 class="stroke_title absolute text-size-7xl text-size-7xl font-extrabold md:text-size-9xl sm:text-size-8xl op-30 dark:op-50">{{ $t('pages.index.post') }}</h1>
           <div mt10 sm:mt15>
             <ul v-if="postsInfos.length">
               <li

@@ -38,7 +38,7 @@ const { title: titleSlot } = useSlots()
     >
       <PopoverPanel
         v-bind="$attrs"
-        absolute left-0 top--10 z-99 rounded-md bg-gray-800 px3 py1.5
+        absolute left-0 top--10 z-99 rounded-md bg-white px3 py1.5 dark:bg-gray-800 border="1 solid" dark:border="none"
         as="span"
         :style="{ left: `-${buttonWidth / 2}px` }"
       >
