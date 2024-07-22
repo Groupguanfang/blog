@@ -69,7 +69,7 @@ const section = computed(() => locale.value === 'en' ? IntroductionEn.section : 
           </div>
 
           <!-- eslint-disable-next-line -->
-          <h1 class="stroke_title absolute text-size-7xl text-size-7xl font-extrabold md:text-size-9xl sm:text-size-8xl op-30 dark:op-50">TODO</h1>
+          <h1 class="stroke_title absolute text-size-7xl text-size-7xl font-extrabold md:text-size-9xl sm:text-size-8xl op-30 dark:op-50">{{ $t('pages.index.current-focus') }}</h1>
           <ol mt15 flex flex-col gap5 sm:mt20>
             <li
               v-for="(item, index) in configuration.todo" :key="index"
