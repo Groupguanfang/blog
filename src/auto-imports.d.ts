@@ -205,6 +205,7 @@ declare global {
   const useNetwork: typeof import('@vueuse/core')['useNetwork']
   const useNextLanguage: typeof import('./composables/lang')['useNextLanguage']
   const useNow: typeof import('@vueuse/core')['useNow']
+  const useNumberRange: typeof import('./composables/range')['useNumberRange']
   const useObjectUrl: typeof import('@vueuse/core')['useObjectUrl']
   const useOffsetPagination: typeof import('@vueuse/core')['useOffsetPagination']
   const useOnline: typeof import('@vueuse/core')['useOnline']
@@ -505,6 +506,7 @@ declare module 'vue' {
     readonly useNetwork: UnwrapRef<typeof import('@vueuse/core')['useNetwork']>
     readonly useNextLanguage: UnwrapRef<typeof import('./composables/lang')['useNextLanguage']>
     readonly useNow: UnwrapRef<typeof import('@vueuse/core')['useNow']>
+    readonly useNumberRange: UnwrapRef<typeof import('./composables/range')['useNumberRange']>
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
@@ -798,6 +800,7 @@ declare module '@vue/runtime-core' {
     readonly useNetwork: UnwrapRef<typeof import('@vueuse/core')['useNetwork']>
     readonly useNextLanguage: UnwrapRef<typeof import('./composables/lang')['useNextLanguage']>
     readonly useNow: UnwrapRef<typeof import('@vueuse/core')['useNow']>
+    readonly useNumberRange: UnwrapRef<typeof import('./composables/range')['useNumberRange']>
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>

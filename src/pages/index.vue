@@ -9,6 +9,9 @@ const { locale } = useI18n()
 const { configuration } = useConfiguration()
 const { changeLanguage } = useNextLanguage()
 const { postsInfos } = await usePostList()
+const { range: range1 } = useNumberRange(3, 300, { interval: 100, immediate: true })
+const { range: range2 } = useNumberRange(-180, 200, { interval: 100, immediate: true })
+const { range: range3 } = useNumberRange(-150, 150, { interval: 200, immediate: true })
 
 const open = (href: string) => window.open(href)
 const goPost = (filename: string) => router.push(`/posts/${filename.replace(/\.md$/, '')}`)
@@ -32,7 +35,10 @@ const section = computed(() => locale.value === 'en' ? IntroductionEn.section : 
         <HomeBackground />
         <!-- 占位 -->
         <div class="fixed left-0 right-0 top-0 transform-gpu overflow-hidden blur-3xl sm:left-1/2 -z-10 -ml-24 lg:ml-24 xl:ml-48" aria-hidden="true">
-          <div class="aspect-[801/1036] w-[50.0625rem] from-yellow to-blue bg-gradient-to-tr opacity-30" style="clip-path: polygon(63.1% 29.5%, 100% 17.1%, 76.6% 3%, 48.4% 0%, 44.6% 4.7%, 54.5% 25.3%, 59.8% 49%, 55.2% 57.8%, 44.4% 57.2%, 27.8% 47.9%, 35.1% 81.5%, 0% 97.7%, 39.2% 100%, 35.2% 81.4%, 97.2% 52.8%, 63.1% 29.5%)" />
+          <div
+            class="animate-gradient-flow aspect-[801/1036] w-[50.0625rem] from-yellow to-blue bg-gradient-to-tr opacity-30 transition-all"
+            :style="`clip-path: polygon(63.1% 29.5%, 100% 17.1%, 76.6% ${range1}%, 48.4% 0%, 44.6% 4.7%, 54.5% 25.3%, 59.8% 49%, 55.2% 57.8%, ${range2}% 57.2%, 27.8% 47.9%, 35.1% 81.5%, 0% 97.7%, 39.2% 100%, 35.2% ${range3}%, 97.2% 52.8%, 63.1% 29.5%)`"
+          />
         </div>
         <div m="x4 sm:t36 md:x15 lg:x60 xl:x80 2xl:x120 t24" class="overflow-hidden">
           <!-- eslint-disable-next-line -->
