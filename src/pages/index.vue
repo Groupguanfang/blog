@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import HomeBackground from '~/assets/HomeBackground.vue'
+import * as IntroductionEn from '../../locales/introduction-en.md'
+import * as IntroductionZhCN from '../../locales/introduction-zh-CN.md'
+import * as HomeBackground from '~/assets/HomeBackground.vue'
 
-useHead({
-  title: '文博知浅',
-})
+useHead({ title: '文博知浅' })
 const router = useRouter()
+const { locale } = useI18n()
 const { changeLanguage } = useNextLanguage()
 const { postsInfos } = await usePostList()
 
@@ -20,6 +21,7 @@ const operation = computed(() => [
   { icon: isDark.value ? 'i-ph-moon-duotone' : 'i-ph-sun-duotone', onClick: () => toggleDark() },
   { icon: 'i-ph-translate-duotone', onClick: () => changeLanguage() },
 ])
+const section = computed(() => locale.value === 'en' ? IntroductionEn.section : IntroductionZhCN.section)
 </script>
 
 <template>
@@ -33,38 +35,24 @@ const operation = computed(() => [
         </div>
         <div m="x4 sm:t36 md:x15 lg:x60 xl:x80 2xl:x120 t24" class="overflow-hidden">
           <!-- eslint-disable-next-line -->
-          <h1 class="text-4xl text-gray-900 font-bold tracking-tight sm:text-6xl dark:text-white/80 mb6">你好，文博知浅</h1>
+          <h1 class="text-4xl text-gray-900 font-bold tracking-tight sm:text-6xl dark:text-white/80 mb6">
+            {{ locale === 'en' ? IntroductionEn.title : IntroductionZhCN.title }}
+          </h1>
           <div flex items-center justify-between>
-            <div mb5 flex gap2 overflow-x-auto op-70>
-              <InfoItem icon="i-carbon-education" content="大学, 大二" :hr="true" />
-              <InfoItem icon="i-carbon-location" content="广东, 梅州" :hr="true" />
-              <InfoItem icon="i-carbon-time" content="2019年开始学习编程" />
+            <div mb5 flex flex-wrap gap2 overflow-x-auto op-70>
+              <InfoItem v-for="(item, index) in section" :key="index" icon="i-carbon-education" content="大学, 大二" :hr="true" v-bind="item" />
             </div>
             <div flex items-center gap3>
               <div
                 v-for="(item, index) in operation" :key="index"
-                flex cursor-pointer items-center gap1.5 text-size-4.5 transition-all :class="item.icon"
+                flex cursor-pointer items-center gap1.5 text-size-4.5 transition-all active:scale-80 sm:hover:scale-90 :class="item.icon"
                 @click="item.onClick"
               />
             </div>
           </div>
           <article mb8 flex flex-col gap5>
-            <p>
-              <!-- eslint-disable-next-line -->
-            一个前端, 但是是<PopoverText title="闪电工作室" w-50 top-6>Apple watch版腕上B站、腕上浏览器、腕上音乐制作团队。</PopoverText>的后端开发。
-            </p>
-            <p>
-              喜欢折腾, 喜欢<b class="underline underline-amber">尝试新事物</b>, 喜欢<b class="underline underline-blue">线上分享</b>, 喜欢<b class="underline underline-blueGray">赛博创造</b>, 就是喜欢用<b class="underline underline-cyan">编程造世界</b>的感觉。
-            </p>
-            <p>
-              但是是个i人2333
-            </p>
-            <p>
-              很少玩游戏，小时候父母不给玩游戏，所以到现在我对游戏仍然没感觉。这导致我对游戏开发也没什么兴趣，而且数学和物理都不大行。
-            </p>
-            <p>
-              对<b class="underline underline-cyan">UI设计</b>情有独钟, 感觉自己的taste还行, 但是脑子里不像真正的UI设计师那样, 拥有那么多的设计方面的idea。
-            </p>
+            <IntroductionEn.default v-if="locale === 'en'" max-w-full />
+            <IntroductionZhCN.default v-else max-w-full />
           </article>
           <div flex flex-wrap gap3>
             <div
@@ -111,7 +99,7 @@ const operation = computed(() => [
 
             <div v-else>
               <div p="x4 y2" text="center teal-700 xl" font="bold">
-                {{ $t("post.noPost") }}
+                {{ $t("pages.index.no-posts") }}
               </div>
             </div>
           </div>

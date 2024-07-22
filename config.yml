@@ -1,2 +1,16 @@
 # 隐藏文章
 excludePost: []
+# 标签
+tags:
+  - name: Apple watch
+  - children:
+      - name: 闪电工作室
+      - name: 暗礁工作室
+      - name: 心电社区
+      - name: 腕上B站
+      - name: 腕上RSS
+      - name: 腕上音乐
+      - name: 腕上小说
+  - name: 刷机
+  - children:
+      - name: Redmi K40

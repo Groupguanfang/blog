@@ -2,6 +2,15 @@
 title: 2023 Apple watch 长纪
 date: 2024-6-13
 lang: zh-CN
+tags:
+  - Apple watch
+  - 闪电工作室
+  - 暗礁工作室
+  - 心电社区
+  - 腕上B站
+  - 腕上RSS
+  - 腕上音乐
+  - 腕上小说
 ---
 
 <route lang="yaml">

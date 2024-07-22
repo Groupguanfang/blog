@@ -6,6 +6,10 @@ declare interface Window {
 declare module '*.md' {
   import type { DefineComponent } from 'vue'
 
+  export const title: string
+  export const section: {
+    [key: string]: string
+  }[]
   const component: DefineComponent<object, object, any>
   export default component
 }
