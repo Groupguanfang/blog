@@ -1,16 +1,6 @@
 # 隐藏文章
 excludePost: []
-# 标签
-tags:
-  - name: Apple watch
-  - children:
-      - name: 闪电工作室
-      - name: 暗礁工作室
-      - name: 心电社区
-      - name: 腕上B站
-      - name: 腕上RSS
-      - name: 腕上音乐
-      - name: 腕上小说
-  - name: 刷机
-  - children:
-      - name: Redmi K40
+todo:
+  - 🧩 尝试一个人做个全生态node版ioc框架?
+  - 📃 前端的配置文件繁多, 能不能做一个web ui来管理这些配置文件?然后再加个插件系统, web ui里再加个插件市场?
+  - 📅 完善博客...长期任务喵

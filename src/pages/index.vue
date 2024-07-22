@@ -6,6 +6,7 @@ import * as HomeBackground from '~/assets/HomeBackground.vue'
 useHead({ title: '文博知浅' })
 const router = useRouter()
 const { locale } = useI18n()
+const { configuration } = useConfiguration()
 const { changeLanguage } = useNextLanguage()
 const { postsInfos } = await usePostList()
 
@@ -26,7 +27,7 @@ const section = computed(() => locale.value === 'en' ? IntroductionEn.section : 
 
 <template>
   <div class="bg-white dark:bg-#121212">
-    <main>
+    <main pb60>
       <div class="relative isolate">
         <HomeBackground />
         <!-- 占位 -->
@@ -66,6 +67,18 @@ const section = computed(() => locale.value === 'en' ? IntroductionEn.section : 
               </div>
             </div>
           </div>
+
+          <!-- eslint-disable-next-line -->
+          <h1 class="stroke_title absolute text-size-7xl text-size-7xl font-extrabold md:text-size-9xl sm:text-size-8xl op-30 dark:op-50">TODO</h1>
+          <ol mt15 flex flex-col gap5 sm:mt20>
+            <li
+              v-for="(item, index) in configuration.todo" :key="index"
+              hover:underline hover:underline-amber
+            >
+              <span op-70>{{ index + 1 }}.</span>
+              {{ item }}
+            </li>
+          </ol>
 
           <!-- 文章 -->
           <!-- eslint-disable-next-line -->
