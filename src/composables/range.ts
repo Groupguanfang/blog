@@ -36,9 +36,11 @@ export function useNumberRange(min: number, max: number, options: UseNumberRange
     clearInterval(interval)
   }
 
-  if (options.immediate === true) {
-    start()
-  }
+  onMounted(() => {
+    if (options.immediate === true) {
+      start()
+    }
+  })
 
   return {
     range,
