@@ -1,5 +1,7 @@
 <script setup lang="tsx"></script>
 
 <template>
-  <RouterView />
+  <Suspense>
+    <RouterView />
+  </Suspense>
 </template>

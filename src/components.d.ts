@@ -10,7 +10,6 @@ declare module 'vue' {
     InfoItem: typeof import('./components/InfoItem.vue')['default']
     Popover: typeof import('@headlessui/vue')['Popover']
     PopoverButton: typeof import('@headlessui/vue')['PopoverButton']
-    PopoverOverlay: typeof import('@headlessui/vue')['PopoverOverlay']
     PopoverPanel: typeof import('@headlessui/vue')['PopoverPanel']
     PopoverText: typeof import('./components/PopoverText.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

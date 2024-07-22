@@ -16,3 +16,5 @@ declare module '*.vue' {
   const component: DefineComponent<object, object, any>
   export default component
 }
+
+declare let __GCZ_CONFIG__: Record<string, unknown>

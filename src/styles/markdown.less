@@ -1,0 +1,53 @@
+.prose pre:not(.shiki) {
+  padding: 0;
+}
+
+.prose .shiki {
+  font-family: 'DM Mono', monospace;
+  font-size: 1.2em;
+  line-height: 1.4;
+}
+
+.prose img {
+  width: 100%;
+}
+
+.shiki,
+.shiki span {
+  color: var(--shiki-light);
+  background: var(--shiki-light-bg);
+}
+
+html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark);
+  background: var(--shiki-dark-bg);
+}
+
+.prose blockquote {
+  border-left: 4px solid #ddd !important;
+  padding: 0 !important;
+  padding-left: 1em !important;
+}
+
+.prose p code,
+.prose li code,
+.prose pre code,
+.prose blockquote code {
+  &::before {
+    content: none !important;
+  }
+  &::after {
+    content: '' !important;
+  }
+
+  html.dark & {
+    background: #333;
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin: 0 2px;
+  }
+
+  background: #f7f7f7;
+}

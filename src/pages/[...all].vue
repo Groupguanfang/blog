@@ -1,4 +1,4 @@
-<script setup lang="tsx">
+<script setup lang="ts">
 useHead({
   title: '404',
 })
@@ -13,16 +13,10 @@ useHead({
       什么都没有找到哦
     </p>
     <div mt4 flex gap-3>
-      <button
-        p="x3.5 y1.5" border="1 gray" cursor-pointer rounded-md text-size-sm
-        @click="$router.back()"
-      >
+      <button p="x3.5 y1.5" border="1 gray" cursor-pointer rounded-md text-size-sm @click="$router.back()">
         返回
       </button>
-      <button
-        p="x3.5 y1.5" border="1 gray" cursor-pointer rounded-md
-        @click="$router.push('/')"
-      >
+      <button p="x3.5 y1.5" border="1 gray" cursor-pointer rounded-md @click="$router.push('/')">
         首页
       </button>
     </div>
