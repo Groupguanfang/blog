@@ -1,5 +1,10 @@
 <script setup lang="tsx">
 const router = useRouter()
+const { range: range1 } = useNumberRange(0, 150, { interval: 100, immediate: true })
+const { range: range2 } = useNumberRange(0, 150, { interval: 100, immediate: true })
+const { range: range3 } = useNumberRange(-400, 100, { interval: 60, immediate: true })
+const { range: range4 } = useNumberRange(3, 100, { interval: 100, immediate: true })
+const { range: range5 } = useNumberRange(-50, 100, { interval: 100, immediate: true })
 
 const operation = computed(() => [
   { icon: 'i-ph-house-duotone', onClick: () => router.replace('/') },
@@ -10,11 +15,17 @@ const operation = computed(() => [
 
 <template>
   <div>
-    <div v-if="isDark" class="fixed inset-x-0 transform-gpu overflow-hidden blur-3xl -top-40 -z-10 sm:-top-80" aria-hidden="true">
-      <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] rotate-[30deg] from-yellow to-blue bg-gradient-to-tr opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem] -translate-x-1/2" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" />
+    <div v-if="isDark" class="fixed inset-x-0 transform-gpu overflow-hidden blur-2xl -top-40 -z-10 sm:-top-80" aria-hidden="true">
+      <div
+        class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] rotate-[30deg] from-yellow to-blue bg-gradient-to-tr opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem] -translate-x-1/2"
+        :style="`clip-path: polygon(74.1% 44.1%, ${range1}% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% ${range2}%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% ${range3}%, 76.1% 97.7%, 74.1% 44.1%)`"
+      />
     </div>
     <div v-else class="fixed inset-x-0 transform-gpu overflow-hidden blur-3xl -top-40 -z-10 sm:-top-80" aria-hidden="true">
-      <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] rotate-[30deg] from-[#ff80b5] to-[#9089fc] bg-gradient-to-tr opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem] -translate-x-1/2" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" />
+      <div
+        class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] rotate-[30deg] from-[#ff80b5] to-[#9089fc] bg-gradient-to-tr opacity-60 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem] -translate-x-1/2"
+        :style="`clip-path: polygon(74.1% 44.1%, ${range1}% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% ${range2}%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% ${range3}%, 76.1% 97.7%, 74.1% 44.1%)`"
+      />
     </div>
     <div class="mt10 px5 text-left sm:mt20">
       <div mb10 flex flex-col items-center gap3>
@@ -31,11 +42,17 @@ const operation = computed(() => [
       </div>
       <RouterView m-auto pb-20 text-left />
     </div>
-    <div v-if="isDark" class="fixed inset-x-0 top-[calc(100%-13rem)] transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)] -z-10" aria-hidden="true">
-      <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] from-[#ff80b5] to-red bg-gradient-to-tr opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem] -translate-x-1/2" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" />
+    <div v-if="isDark" class="fixed inset-x-0 top-[calc(100%-13rem)] transform-gpu overflow-hidden blur-2xl sm:top-[calc(100%-30rem)] -z-10" aria-hidden="true">
+      <div
+        class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] from-[#ff80b5] to-red bg-gradient-to-tr opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem] -translate-x-1/2"
+        :style="`clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% ${range5}%, 47.5% 58.3%, 45.2% ${range4}%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)`"
+      />
     </div>
     <div v-else class="fixed inset-x-0 top-[calc(100%-13rem)] transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)] -z-10" aria-hidden="true">
-      <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] from-[#ff80b5] to-[#9089fc] bg-gradient-to-tr opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem] -translate-x-1/2" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" />
+      <div
+        class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] from-[#ff80b5] to-[#9089fc] bg-gradient-to-tr opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem] -translate-x-1/2"
+        :style="`clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% ${range5}%, 47.5% 58.3%, 45.2% ${range4}%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)`"
+      />
     </div>
   </div>
 </template>
