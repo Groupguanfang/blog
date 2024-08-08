@@ -123,6 +123,10 @@ const section = computed(() => locale.value === 'en' ? IntroductionEn.section : 
               </div>
             </div>
           </div>
+          <footer mt20 flex justify-between op-70>
+            <div>粤ICP备2023102563号-1</div>
+            <div>Zero的栈记</div>
+          </footer>
         </div>
       </div>
     </main>
