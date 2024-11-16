@@ -108,7 +108,7 @@ const section = computed(() => locale.value === 'en' ? IntroductionEn.section : 
               title="unproject"
               :description="$t('pages.index.projects.unproject')"
               icon="i-carbon-mac-command"
-              href="https://github.com/nailyjs/vitesse-naily"
+              href="https://github.com/nailyjs/unproject"
             />
             <ProjectCard
               title="vitesse naily"
