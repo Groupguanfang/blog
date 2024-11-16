@@ -1,5 +1,5 @@
 ---
-title: 你好，文博知浅 - Zero的栈记
+title: 你好，文博知浅
 section:
   - icon: i-carbon-education
     content: 大学, 大二

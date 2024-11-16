@@ -4,8 +4,8 @@ import * as IntroductionZhCN from '../../locales/introduction-zh-CN.md'
 import * as HomeBackground from '~/assets/HomeBackground.vue'
 
 useHead({ title: '文博知浅' })
-const router = useRouter()
 const { locale } = useI18n()
+const router = useRouter()
 const { configuration } = useConfiguration()
 const { changeLanguage } = useNextLanguage()
 const { postsInfos } = await usePostList()
@@ -41,7 +41,7 @@ const section = computed(() => locale.value === 'en' ? IntroductionEn.section : 
             :style="`clip-path: polygon(63.1% 29.5%, 100% 17.1%, 76.6% ${range1}%, 48.4% 0%, 44.6% 4.7%, 54.5% 25.3%, 59.8% 49%, 55.2% 57.8%, ${range2}% 57.2%, 27.8% 47.9%, 35.1% 81.5%, 0% 97.7%, 39.2% 100%, 35.2% ${range3}%, 97.2% 52.8%, 63.1% 29.5%)`"
           />
         </div>
-        <div m="x4 sm:t36 md:x15 lg:x60 xl:x80 2xl:x120 t24" class="overflow-hidden">
+        <div m="x4 sm:t36 md:x15 lg:x20 xl:x40 2xl:x60 t24" class="overflow-hidden">
           <!-- eslint-disable-next-line -->
           <h1 class="text-4xl text-gray-900 font-bold tracking-tight sm:text-6xl dark:text-white/80 mb6">
             {{ locale === 'en' ? IntroductionEn.title : IntroductionZhCN.title }}
@@ -75,6 +75,7 @@ const section = computed(() => locale.value === 'en' ? IntroductionEn.section : 
             </div>
           </div>
 
+          <!-- 关注 -->
           <!-- eslint-disable-next-line -->
           <h1 class="stroke_title absolute text-size-7xl text-size-7xl font-extrabold md:text-size-9xl sm:text-size-8xl op-30 dark:op-50">{{ $t('pages.index.current-focus') }}</h1>
           <ol mt15 flex flex-col gap5 sm:mt20>
@@ -87,10 +88,178 @@ const section = computed(() => locale.value === 'en' ? IntroductionEn.section : 
             </li>
           </ol>
 
+          <!-- 项目 -->
+          <!-- eslint-disable-next-line -->
+          <h1 class="stroke_title absolute text-size-7xl text-size-7xl font-extrabold md:text-size-9xl sm:text-size-8xl op-30 dark:op-50">{{ $t('pages.index.project') }}</h1>
+
+          <div mt5 flex items-center gap-4 md:mt15>
+            <div>{{ $t('pages.index.project-categories.naily') }}</div>
+            <hr my10 w-full op-10>
+          </div>
+
+          <ProjectCardGrid>
+            <ProjectCard
+              title="naily"
+              :description="$t('pages.index.projects.naily')"
+              icon="i-ph-paint-bucket"
+              href="https://github.com/nailyjs/core"
+            />
+            <ProjectCard
+              title="unproject"
+              :description="$t('pages.index.projects.unproject')"
+              icon="i-carbon-mac-command"
+              href="https://github.com/nailyjs/vitesse-naily"
+            />
+            <ProjectCard
+              title="vitesse naily"
+              :description="$t('pages.index.projects.vitesse-naily')"
+              icon="i-carbon-campsite"
+              href="https://github.com/nailyjs/vitesse-naily"
+            />
+          </ProjectCardGrid>
+
+          <div flex items-center gap-4 text-nowrap>
+            <div>{{ $t('pages.index.project-categories.nest') }}</div>
+            <hr my10 w-full op-10>
+          </div>
+
+          <ProjectCardGrid>
+            <ProjectCard
+              title="Lightning Nai Six"
+              :description="$t('pages.index.projects.lightning-nai-six')"
+              icon="i-ic-outline-design-services"
+              href="https://github.com/nailyjs/Nai-Six"
+            />
+            <ProjectCard
+              title="Lightning Nai Element"
+              :description="$t('pages.index.projects.lightning-nai-element')"
+              icon="i-ic-outline-design-services"
+              href="https://github.com/nailyjs/Nai-Element"
+            />
+            <ProjectCard
+              title="Nest.js @Value"
+              :description="$t('pages.index.projects.nest-config-value')"
+              icon="i-carbon-settings"
+              href="https://github.com/nailyjs/nest-config-value"
+            />
+            <ProjectCard
+              title="Nest.js Ali OSS"
+              :description="$t('pages.index.projects.nest-ali-oss')"
+              icon="i-carbon-cloud-upload"
+              href="https://github.com/nailyjs/nest-ali-oss"
+            />
+            <ProjectCard
+              title="Nest.js Upyun"
+              :description="$t('pages.index.projects.nest-upyun')"
+              icon="i-carbon-fetch-upload-cloud"
+              href="https://github.com/nailyjs/nest-upyun"
+            />
+            <ProjectCard
+              title="Nest.js Redlock"
+              :description="$t('pages.index.projects.nest-redlock')"
+              icon="i-carbon-rule-locked"
+              href="https://github.com/nailyjs/nest-redlock"
+            />
+            <ProjectCard
+              title="Nest.js Prisma"
+              :description="$t('pages.index.projects.nest-prisma')"
+              icon="i-carbon-data-base"
+              href="https://github.com/nailyjs/nest-prisma"
+            />
+            <ProjectCard
+              title="Nest.js Apple App Store"
+              icon="i-carbon-apple"
+              :description="$t('pages.index.projects.nest-apple-app-store')"
+              href="https://github.com/nailyjs/nest-apple-app-store"
+            />
+            <ProjectCard
+              title="Nest.js Tencent Cloud"
+              icon="i-carbon-cloud"
+              :description="$t('pages.index.projects.nest-tencentcloud')"
+              href="https://github.com/nailyjs/nest-tencentcloud"
+            />
+          </ProjectCardGrid>
+
+          <div flex items-center gap-4 text-nowrap>
+            <div>{{ $t('pages.index.project-categories.vite') }}</div>
+            <hr my10 w-full op-10>
+          </div>
+
+          <ProjectCardGrid>
+            <ProjectCard
+              title="unplugin-rpc"
+              :description="$t('pages.index.projects.unplugin-rpc')"
+              icon="i-carbon-connection-signal"
+              href="https://github.com/nailyjs/core/tree/v2/packages/unplugin-rpc"
+            />
+            <ProjectCard
+              title="vite-plugin-node-runner"
+              :description="$t('pages.index.projects.vite-plugin-node-runner')"
+              icon="i-carbon-play"
+              href="https://github.com/nailiable/vite-plugin-node-runner"
+            />
+            <ProjectCard
+              title="vite-nest-auto-scan"
+              :description="$t('pages.index.projects.vite-nest-auto-scan')"
+              icon="i-carbon-search"
+              href="https://github.com/nailiable/vite-nest/blob/v1/packages/auto-scan/"
+            />
+            <ProjectCard
+              title="vite-nest-auto-import"
+              :description="$t('pages.index.projects.vite-nest-auto-import')"
+              icon="i-carbon-import-export"
+              href="https://github.com/nailiable/vite-nest/blob/v1/packages/auto-import"
+            />
+            <ProjectCard
+              title="@naiable/rollup-config"
+              :description="$t('pages.index.projects.rollup-config')"
+              icon="i-carbon-container-registry"
+              href="https://github.com/nailiable/rollup-config"
+            />
+          </ProjectCardGrid>
+
+          <div flex items-center gap-4 text-nowrap>
+            <div>{{ $t('pages.index.project-categories.others') }}</div>
+            <hr my10 w-full op-10>
+          </div>
+
+          <ProjectCardGrid>
+            <ProjectCard
+              title="Cell.js new docs"
+              :description="$t('pages.index.projects.celljs-new-docs')"
+              href="https://malagu.naily.cc"
+              icon="i-carbon-container-software"
+            />
+            <ProjectCard
+              title="pnpm create es-project"
+              :description="$t('pages.index.projects.create-es-project')"
+              icon="i-carbon-code"
+              href="https://github.com/Groupguanfang/es-project"
+            />
+            <ProjectCard
+              title="Netease Music List Downloader"
+              :description="$t('pages.index.projects.netease-music-list-downloader')"
+              icon="i-carbon-music"
+              href="https://github.com/Groupguanfang/music-list-downloader"
+            />
+            <ProjectCard
+              title="YesCloudMusic"
+              :description="$t('pages.index.projects.yes-cloud-music')"
+              icon="i-carbon-music"
+              href="https://github.com/Groupguanfang/YesCloudMusic"
+            />
+            <ProjectCard
+              title="Bt"
+              :description="$t('pages.index.projects.bt')"
+              icon="i-carbon-dashboard"
+              href="https://github.com/Groupguanfang/bt"
+            />
+          </ProjectCardGrid>
+
           <!-- 文章 -->
           <!-- eslint-disable-next-line -->
           <h1 class="stroke_title absolute text-size-7xl text-size-7xl font-extrabold md:text-size-9xl sm:text-size-8xl op-30 dark:op-50">{{ $t('pages.index.post') }}</h1>
-          <div mt10 sm:mt15>
+          <div mt15 sm:mt15>
             <ul v-if="postsInfos.length">
               <li
                 v-for="(post, index) in postsInfos" :key="index"
@@ -123,8 +292,9 @@ const section = computed(() => locale.value === 'en' ? IntroductionEn.section : 
               </div>
             </div>
           </div>
+
           <footer mt20 flex justify-between op-70>
-            <div>粤ICP备2023102563号-1</div>
+            <div><a href="https://beian.miit.gov.cn/">粤ICP备2023102563号-1</a></div>
             <div>Zero的栈记</div>
           </footer>
         </div>

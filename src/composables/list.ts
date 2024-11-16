@@ -17,3 +17,13 @@ export async function usePostList() {
 
   return { posts, postsInfos }
 }
+
+export function useTimelineList() {
+  const timelinePosts: Record<string, any> = import.meta.glob('../pages/now/*.md', { eager: true })
+
+  for (const i in timelinePosts) {
+    console.log(h(timelinePosts[i].default))
+  }
+
+  return { timelinePosts }
+}

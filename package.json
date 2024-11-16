@@ -36,6 +36,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^2.23.0",
     "@iconify-json/carbon": "^1.1.36",
+    "@iconify-json/ic": "^1.2.1",
     "@intlify/unplugin-vue-i18n": "^4.0.0",
     "@shikijs/markdown-it": "^1.10.3",
     "@types/js-yaml": "^4.0.9",
@@ -84,6 +85,6 @@
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*": "eslint . --fix "
   }
 }

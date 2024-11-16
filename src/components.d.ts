@@ -7,11 +7,14 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ImageCard: typeof import('./components/ImageCard.vue')['default']
     InfoItem: typeof import('./components/InfoItem.vue')['default']
     Popover: typeof import('@headlessui/vue')['Popover']
     PopoverButton: typeof import('@headlessui/vue')['PopoverButton']
     PopoverPanel: typeof import('@headlessui/vue')['PopoverPanel']
     PopoverText: typeof import('./components/PopoverText.vue')['default']
+    ProjectCard: typeof import('./components/ProjectCard.vue')['default']
+    ProjectCardGrid: typeof import('./components/ProjectCardGrid.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

@@ -2,4 +2,33 @@ pages:
   index:
     no-posts: 没有文章
     post: 文章
+    project: 项目
     current-focus: 关注
+    project-categories:
+      naily: Naily.js
+      nest: Nest.js
+      vite: Vite & Rollup & unplugin
+      others: 其他
+    projects:
+      naily: 🍺 一个轻量级、渐进式的 TypeScript IOC 框架。
+      vitesse-naily: 🚀 Vitesse + Naily Rpc 打造node全栈应用。
+      unproject: 📦 通过一个面板了解和管理所有 JS/TS 项目。
+      lightning-nai-six: 📑 一个加满了buff的nest.js示例项目, 已用在了闪电工作室的生产环境
+      lightning-nai-element: 📑 v5版, 已用在了闪电工作室的生产环境
+      nest-config-value: ⚙️ 将Value注解带入nest.js项目中
+      nest-ali-oss: ☁️ nest.js阿里云对象存储模块
+      nest-upyun: ☁️ nest.js又拍云对象存储模块
+      nest-redlock: 🔒 nest.js分布式红锁模块
+      nest-prisma: 📊 nest.js带监听器的Prisma模块
+      nest-apple-app-store: 🍎 nest.js苹果应用商店API模块
+      nest-tencentcloud: ☁️ nest.js腾讯云模块
+      celljs-new-docs: 前段时间帮cell.js(原malagu)重构了文档。
+      create-es-project: 🚀 一个我自己快速创建项目的工具。模版存放于npm,只需要发布带上es-project-template即会在此显示
+      netease-music-list-downloader: 🎵 网易云音乐歌单下载小脚本, 使用的NeteaseCloudMusicApi, 给爸妈下歌到车上的U盘用
+      yes-cloud-music: 🎵 本来想重构YesPlayMusic的, 但是NeteaseCloudMusicApi的作者被发了函, 这个项目就暂时搁置了
+      bt: 高中时偷偷在桌子底下用手机写代码，是一个适配宝塔面板的一个网页编辑器
+      vite-plugin-node-runner: 🚀 一个小插件, 用于在watch mode下rerun某个node.js脚本
+      unplugin-rpc: 📡 Naily.js Core的一部分, 用于将Naily的Json RPC服务器接入到Vite项目中
+      vite-nest-auto-scan: 🚀 自动扫描nest.js + vite项目中某个文件夹下的所有controllers/providers/imports, 并注入到某个Module中
+      vite-nest-auto-import: 🔪 nest.js的unplugin-auto-import预设
+      rollup-config: 📦 尝试做一个类似antfu/eslint-config那样简便的rollup配置工具

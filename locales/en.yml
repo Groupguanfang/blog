@@ -2,4 +2,32 @@ pages:
   index:
     no-posts: No posts yet
     post: Posts
+    project: Projects
     current-focus: Focus
+    project-categories:
+      naily: Naily.js
+      nest: Nest.js
+      vite: Vite & Rollup & unplugin
+      others: Others
+    projects:
+      naily: 🍺 Lightweight, progressive IOC framework for TypeScript.
+      vitesse-naily: 🚀 Vitesse + Naily Rpc create a node full-stack application.
+      unproject: 📦 Understand and manage all JS/TS projects with one panel.
+      lightning-nai-six: 📑 A buff-filled nest.js sample project has been used in the production environment of Lightning Studio
+      lightning-nai-element: 📑 v5 version, has been used in the production environment of Lightning Studio
+      nest-ali-oss: ⚙️ nest.js Aliyun OSS module
+      nest-upyun: ☁️ nest.js Upyun OSS module
+      nest-redlock: ☁️ nest.js distributed red lock module
+      nest-prisma: 📊 nest.js Prisma module with listener
+      nest-apple-app-store: 🍎 nest.js Apple App Store API module
+      nest-tencentcloud: ☁️ nest.js Tencent Cloud module
+      celljs-new-docs: Refactored the documentation for cell.js (originally malagu) a while ago.
+      create-es-project: 🚀 A tool I use to quickly create projects. The template is stored on npm, and only needs to be published with es-project-template to be displayed here.
+      netease-music-list-downloader: 🎵 Netease Cloud Music playlist download script, using `NeteaseCloudMusicApi`, download songs for parents to the disk in the car
+      yes-cloud-music: 🎵 I tried to refactor YesPlayMusic, but the author of NeteaseCloudMusicApi was sent a letter, so this project has been suspended for the time being
+      bt: In high school, I secretly wrote code under the table with my phone. It is a web editor that adapts to the Baota panel.
+      vite-plugin-node-runner: 🚀 A small plugin that reruns a node.js script in watch mode
+      unplugin-rpc: 📡 Part of Naily.js Core, used to connect Naily's Json RPC server to Vite project
+      vite-nest-auto-scan: 🚀 Automatically scan all controllers/providers/imports in a folder in a nest.js + vite project and inject them into a Module
+      vite-nest-auto-import: 🔪 nest.js unplugin-auto-import preset
+      rollup-config: 📦 Trying to make a simple rollup configuration tool similar to antfu/eslint-config
