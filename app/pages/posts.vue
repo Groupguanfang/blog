@@ -10,5 +10,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div>Hello world!</div>
+  <article class="prose dark:prose-invert max-w-none text-center mt-20">
+    <p class="opacity-70 italic">Coming soon...</p>
+  </article>
 </template>
