@@ -1,0 +1,16 @@
+{
+  "cSpell.words": [
+    "bilibili",
+    "esbuild",
+    "Noto",
+    "nuxt",
+    "Roze",
+    "vite",
+    "voidzero",
+    "vueuse"
+  ],
+
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+}
