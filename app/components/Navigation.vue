@@ -1,9 +1,11 @@
 <script setup lang="ts">
-const menus = [
-  { name: '首页', icon: 'ph:house-duotone', hoverIcon: 'ph:house-fill', href: '/' },
-  { name: '文字', icon: 'ph:text-t-duotone', hoverIcon: 'ph:text-t-fill', href: '/posts' },
-  { name: '构建', icon: 'ph:building-duotone', hoverIcon: 'ph:building-fill', href: '/builds' },
-] as const;
+const { locale, t } = useI18n()
+
+const menus = computed(() => [
+  { name: t('nav.home'), icon: 'ph:house-duotone', hoverIcon: 'ph:house-fill', href: '/' },
+  { name: t('nav.posts'), icon: 'ph:text-t-duotone', hoverIcon: 'ph:text-t-fill', href: '/posts' },
+  { name: t('nav.builds'), icon: 'ph:building-duotone', hoverIcon: 'ph:building-fill', href: '/builds' },
+])
 
 const CHAR_MS = 90;
 const ITEM_GAP_MS = 140;
@@ -11,7 +13,7 @@ const START_MS = 220;
 
 const prefersReducedMotion = usePreferredReducedMotion();
 const canHover = useMediaQuery('(hover: hover) and (pointer: fine)');
-const steps = ref(menus.map(() => 0));
+const steps = ref(menus.value.map(() => 0));
 const caretAt = ref(-1);
 
 let runId = 0;
@@ -22,12 +24,12 @@ function wait(ms: number) {
 }
 
 function itemTotal(index: number) {
-  const menu = menus[index];
+  const menu = menus.value[index];
   return menu ? 1 + menu.name.length : 0;
 }
 
 function revealAll() {
-  steps.value = menus.map((_, index) => itemTotal(index));
+  steps.value = menus.value.map((_, index) => itemTotal(index));
   caretAt.value = -1;
 }
 
@@ -36,7 +38,7 @@ function isIconShown(index: number) {
 }
 
 function typedName(index: number) {
-  const menu = menus[index];
+  const menu = menus.value[index];
   if (!menu) return '';
   return menu.name.slice(0, Math.max(0, (steps.value[index] ?? 0) - 1));
 }
@@ -66,10 +68,10 @@ async function typeAll() {
     return;
   }
 
-  steps.value = menus.map(() => 0);
+  steps.value = menus.value.map(() => 0);
   await wait(START_MS);
 
-  for (let index = 0; index < menus.length; index++) {
+  for (let index = 0; index < menus.value.length; index++) {
     if (cancelled || id !== runId) return;
     await typeItem(index, id);
     if (cancelled || id !== runId) return;
@@ -88,7 +90,22 @@ function onLeave() {
   revealAll();
 }
 
-onMounted(typeAll);
+watch(locale, () => {
+  revealAll();
+});
+
+const hasTyped = useState('nav-has-typed', () => false)
+
+onMounted(() => {
+  if (hasTyped.value) {
+    revealAll()
+    return
+  }
+
+  typeAll().then(() => {
+    hasTyped.value = true
+  })
+})
 
 onUnmounted(() => {
   cancelled = true;

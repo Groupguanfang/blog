@@ -1,0 +1,19 @@
+{
+  "nav": {
+    "home": "Home",
+    "posts": "Writing",
+    "builds": "Builds"
+  },
+  "hero": {
+    "phrases": [
+      "Looking for a place to belong",
+      "Love finding and combining building blocks",
+      "Exploring systemic architectures",
+      "Then making something new"
+    ]
+  },
+  "operation": {
+    "language": "Switch language",
+    "colorMode": "Toggle color mode"
+  }
+}

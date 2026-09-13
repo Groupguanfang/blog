@@ -2,16 +2,20 @@
   <main class="flex flex-col justify-center items-center">
     <section class="flex flex-col justify-center h-screen items-center max-w-180 w-full">
       <div class="w-full min-w-6 text-center text-5xl font-serif font-medium">Zero</div>
-      <div class="hero-phrases font-light opacity-50 mt-3 text-sm flex flex-col md:flex-row text-center">
-        <span style="--stagger: 0" data-animate="top">寻找归宿中</span>
-        <span class="select-none motion-safe:animate-[fade-in_0.6s_ease_180ms_both] hidden md:inline">&nbsp;/&nbsp;</span>
-        <span style="--stagger: 1" data-animate="bottom">喜欢发现和组合各种积木</span>
-        <span class="select-none motion-safe:animate-[fade-in_0.6s_ease_360ms_both] hidden md:inline">&nbsp;/&nbsp;</span>
-        <span style="--stagger: 2" data-animate="top">研究各种系统性架构</span>
-        <span class="select-none motion-safe:animate-[fade-in_0.6s_ease_540ms_both] hidden md:inline">&nbsp;/&nbsp;</span>
-        <span style="--stagger: 3" data-animate="bottom">然后创造点什么新东西</span>
-      </div>
       <Navigation class="mt-5" />
+      <div class="hero-phrases font-light opacity-50 mt-3 text-sm flex flex-col md:flex-row text-center items-center">
+        <span style="--stagger: 0" data-animate="top">{{ $t('hero.phrases.0') }}</span>
+        <span class="select-none motion-safe:animate-[fade-in_0.6s_ease_180ms_both] hidden md:inline">&nbsp;/&nbsp;</span>
+        <span style="--stagger: 1" data-animate="bottom">{{ $t('hero.phrases.1') }}</span>
+        <span class="select-none motion-safe:animate-[fade-in_0.6s_ease_360ms_both] hidden md:inline">&nbsp;/&nbsp;</span>
+        <span style="--stagger: 2" data-animate="top">{{ $t('hero.phrases.2') }}</span>
+        <span class="select-none motion-safe:animate-[fade-in_0.6s_ease_540ms_both] hidden md:inline">&nbsp;/&nbsp;</span>
+        <span style="--stagger: 3" data-animate="bottom">{{ $t('hero.phrases.3') }}</span> 
+      </div>
+      <div class="flex items-center gap-2 mt-3">
+        <SocialLinks />
+        <Operation />
+      </div>
     </section>
   </main>
 </template>
@@ -70,8 +74,3 @@
 }
 </style>
 
-<style>
-html, body {
-  overflow: hidden;
-}
-</style>

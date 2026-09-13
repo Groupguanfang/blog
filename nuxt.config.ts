@@ -3,8 +3,14 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/eslint',
     '@nuxt/ui',
-    '@nuxt/content'
+    '@nuxt/content',
+    '@nuxtjs/i18n'
   ],
+
+  colorMode: {
+    classSuffix: '',
+    disableTransition: true
+  },
 
   css: ['~/assets/css/main.css'],
 
@@ -16,6 +22,15 @@ export default defineNuxtConfig({
         weights: [400, 500, 600, 700]
       }
     ]
+  },
+
+  i18n: {
+    locales: [
+      { code: 'zh-CN', name: '简体中文', language: 'zh-CN', file: 'zh-CN.json' },
+      { code: 'en', name: 'English', language: 'en', file: 'en.json' },
+    ],
+    defaultLocale: 'zh-CN',
+    strategy: 'no_prefix',
   },
 
   appConfig: {
@@ -37,7 +52,7 @@ export default defineNuxtConfig({
         chevronLeft: 'i-ph-caret-left-duotone',
         chevronRight: 'i-ph-caret-right',
         chevronUp: 'i-ph-caret-up-duotone',
-        close: 'i-ph-x-circle-duotone',
+        close: 'i-ph-x',
         copy: 'i-ph-copy-duotone',
         copyCheck: 'i-ph-check-circle-duotone',
         dark: 'i-ph-moon-duotone',
