@@ -15,5 +15,8 @@
   "operation": {
     "language": "Switch language",
     "colorMode": "Toggle color mode"
+  },
+  "post": {
+    "toc": "Contents"
   }
 }

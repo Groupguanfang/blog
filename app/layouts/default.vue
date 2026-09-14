@@ -14,7 +14,17 @@ const { container = false } = defineProps<{
       class="relative flex flex-col w-full border-x border-gray-200 dark:border-neutral-900 border-dashed motion-safe:transition-[max-width] motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]"
       :class="container ? 'max-w-180' : 'max-w-full'"
     >
+      <div class="pointer-events-none absolute inset-y-0 right-full z-10 hidden xl:block">
+        <div class="pointer-events-auto sticky top-32 w-52 max-h-[calc(100vh-10rem)] overflow-y-auto overscroll-contain">
+          <slot name="left" />
+        </div>
+      </div>
       <slot />
+      <div class="pointer-events-none absolute inset-y-0 left-full z-10 hidden xl:block">
+        <div class="pointer-events-auto sticky top-32 w-52 max-h-[calc(100vh-10rem)] overflow-y-auto overscroll-contain">
+          <slot name="right" />
+        </div>
+      </div>
     </div>
   </div>
 </template>

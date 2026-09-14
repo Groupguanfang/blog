@@ -15,5 +15,8 @@
   "operation": {
     "language": "切换语言",
     "colorMode": "切换颜色模式"
+  },
+  "post": {
+    "toc": "目录"
   }
 }

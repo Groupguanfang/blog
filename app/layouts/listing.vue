@@ -9,13 +9,11 @@ const props = defineProps<{
 const route = useRoute()
 const isPost = computed(() => route.name === 'posts-slug')
 
-const { data: post } = await useAsyncData(
-  () => isPost.value ? `post-${route.path}` : 'writing-listing',
-  () => isPost.value
+const { data: post } = await useAsyncData(() => isPost.value ? `post-${route.path}` : 'writing-listing', () => {
+  return isPost.value
     ? queryCollection('posts').path(route.path).first()
-    : Promise.resolve(null),
-  { watch: [() => route.path] }
-)
+    : Promise.resolve(null)
+}, { watch: [() => route.path] })
 
 const postTitle = computed(() => post.value?.title ?? props.title)
 const coverImage = computed(() => isPost.value ? resolveContentImage(post.value?.meta?.image as string | undefined, route.path) : undefined)
@@ -56,7 +54,7 @@ function onCoverEnterAnimationEnd(event: AnimationEvent) {
   if (event.target === event.currentTarget) coverEnterPlayed.value = true
 }
 
-watch(isPost, (value) => {
+watch(isPost, (value, _oldValue, onCleanup) => {
   if (!value) {
     fromListing.value = false
     listingLeaving.value = false
@@ -75,20 +73,24 @@ watch(isPost, (value) => {
   postLeaving.value = false
   slideEnterReady.value = false
 
-  if (!fromListing.value || prefersReducedMotion.value === 'reduce') {
-    revealArticle()
-    return
-  }
-
+  if (!fromListing.value || prefersReducedMotion.value === 'reduce') return revealArticle()
   contentReady.value = false
   const timer = window.setTimeout(revealArticle, 500)
-
-  onWatcherCleanup(() => clearTimeout(timer))
+  onCleanup(() => clearTimeout(timer))
 }, { immediate: true })
 </script>
 
 <template>
   <Default :container="isPost">
+    <template #left>
+      <PostToc
+        v-if="isPost"
+        :links="post?.body?.toc?.links"
+        :ready="contentReady && slideEnterReady"
+        :leaving="postLeaving"
+      />
+    </template>
+
     <div
       v-if="coverImage"
       class="post-cover-fade absolute inset-x-0 top-0 z-0 h-64 overflow-hidden sm:h-80 md:h-96 motion-safe:transition-opacity motion-safe:duration-320 motion-safe:ease-linear"
@@ -105,37 +107,22 @@ watch(isPost, (value) => {
         :class="coverHovered ? 'post-cover-clear' : undefined"
       >
     </div>
-    <main
-      class="relative z-1 flex flex-col items-center"
-      :class="coverImage ? 'pointer-events-none' : ''"
-    >
+    <main class="relative z-1 flex flex-col items-center" :class="coverImage ? 'pointer-events-none' : ''">
       <div class="w-full flex flex-col mx-auto max-w-200">
-        <header
-          class="flex w-full items-end pt-30"
-          :class="isPost ? 'mb-3' : ''"
-        >
+        <header class="flex w-full items-end pt-30" :class="isPost ? 'mb-3' : ''">
           <div
             class="min-w-0 overflow-hidden prose dark:prose-invert max-w-none motion-safe:transition-opacity motion-safe:duration-320 motion-safe:ease-linear"
             :class="titleFaded ? 'opacity-0 pointer-events-none' : ''"
             :style="{ flexGrow: 1, flexBasis: '0px' }"
           >
-            <h1
-              class="font-serif mb-0 lg:text-5xl!"
-              :class="props.titleClass"
-              :aria-hidden="titleFaded"
-            >
-              {{ props.title }}
-            </h1>
+            <h1 class="font-serif mb-0 lg:text-5xl!" :class="props.titleClass" :aria-hidden="titleFaded">{{ props.title }}</h1>
           </div>
 
           <div
             class="pointer-events-auto shrink-0 flex flex-col gap-3 motion-safe:transition-all motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]"
             :class="isPost ? 'items-center' : 'items-end'"
           >
-            <div
-              class="flex items-end justify-end gap-1"
-              :class="isPost ? '' : 'flex-col md:flex-row'"
-            >
+            <div class="flex items-end justify-end gap-1" :class="isPost ? '' : 'flex-col md:flex-row'">
               <SocialLinks />
               <Operation />
             </div>
@@ -151,7 +138,7 @@ watch(isPost, (value) => {
         <div
           :class="isPost
             ? [
-                'prose dark:prose-invert max-w-none writing-article',
+                'prose dark:prose-invert prose-a:no-underline max-w-none writing-article',
                 contentReady && slideEnterReady
                   ? 'slide-enter-content'
                   : contentReady
@@ -208,16 +195,29 @@ watch(isPost, (value) => {
   }
 }
 
-.writing-article h2 a,
-.writing-article h3 a,
-.writing-article h4 a,
-.writing-article h5 a,
-.writing-article h6 a {
+.writing-article a {
   text-decoration: none;
+  text-decoration-line: none;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 0;
+  text-underline-offset: unset;
+  border-bottom: 1px dashed color-mix(in oklch, currentColor 35%, transparent);
+  border-radius: 0;
+}
+
+.writing-article a:hover {
+  border-bottom: 1px solid currentColor;
+}
+
+.writing-article :is(h2, h3, h4, h5, h6) a,
+.writing-article :is(h2, h3, h4, h5, h6) a:hover {
+  text-decoration: none;
+  border-bottom: none;
 }
 
 .writing-article :is(h2, h3, h4, h5, h6) {
   position: relative;
+  scroll-margin-top: 2rem;
 }
 
 .writing-article :is(h2, h3, h4, h5, h6, p) {
@@ -271,5 +271,15 @@ watch(isPost, (value) => {
 
 .writing-article code::after, .writing-article code::before {
   content: none;
+}
+
+.writing-article blockquote p::before, .writing-article blockquote p::after {
+  content: none;
+}
+
+.writing-article blockquote p {
+  font-style: normal;
+  opacity: 0.6;
+  font-weight: normal;
 }
 </style>
