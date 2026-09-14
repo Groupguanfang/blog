@@ -5,7 +5,7 @@ allowBuilds:
   vue-demi: true
 catalog:
   vite: npm:@voidzero-dev/vite-plus-core@0.2.9
-  vite-plus: 0.2.9
+  vite-plus: 0.3.1
 minimumReleaseAgeExclude:
   - '@unocss/cli@66.10.1'
   - '@unocss/config@66.10.1'

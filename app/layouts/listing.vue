@@ -18,12 +18,43 @@ const { data: post } = await useAsyncData(
 )
 
 const postTitle = computed(() => post.value?.title ?? props.title)
+const coverImage = computed(() => isPost.value ? resolveContentImage(post.value?.meta?.image as string | undefined, route.path) : undefined)
 const fromListing = useState('writing-from-listing', () => false)
 const listingLeaving = useState('writing-listing-leaving', () => false)
 const postLeaving = useState('writing-post-leaving', () => false)
 const prefersReducedMotion = usePreferredReducedMotion()
 const contentReady = ref(false)
+const slideEnterReady = ref(false)
+const coverHovered = ref(false)
+const coverHoverArmed = ref(false)
+const coverEnterPlayed = ref(false)
 const titleFaded = computed(() => listingLeaving.value || isPost.value)
+
+function revealArticle() {
+  contentReady.value = true
+  if (import.meta.server) {
+    slideEnterReady.value = true
+    return
+  }
+
+  nextTick(() => {
+    applySlideEnterStaggerIn(document)
+    slideEnterReady.value = true
+  })
+}
+
+function onCoverEnter() {
+  if (coverHoverArmed.value) coverHovered.value = true
+}
+
+function onCoverLeave() {
+  coverHovered.value = false
+  coverHoverArmed.value = true
+}
+
+function onCoverEnterAnimationEnd(event: AnimationEvent) {
+  if (event.target === event.currentTarget) coverEnterPlayed.value = true
+}
 
 watch(isPost, (value) => {
   if (!value) {
@@ -31,20 +62,26 @@ watch(isPost, (value) => {
     listingLeaving.value = false
     postLeaving.value = false
     contentReady.value = false
+    slideEnterReady.value = false
+    coverHovered.value = false
+    coverHoverArmed.value = false
+    coverEnterPlayed.value = false
     return
   }
 
+  coverHovered.value = false
+  coverHoverArmed.value = !fromListing.value
+  coverEnterPlayed.value = false
   postLeaving.value = false
+  slideEnterReady.value = false
 
   if (!fromListing.value || prefersReducedMotion.value === 'reduce') {
-    contentReady.value = true
+    revealArticle()
     return
   }
 
   contentReady.value = false
-  const timer = window.setTimeout(() => {
-    contentReady.value = true
-  }, 500)
+  const timer = window.setTimeout(revealArticle, 500)
 
   onWatcherCleanup(() => clearTimeout(timer))
 }, { immediate: true })
@@ -52,7 +89,26 @@ watch(isPost, (value) => {
 
 <template>
   <Default :container="isPost">
-    <main class="mx-3 lg:mx-0 flex flex-col items-center">
+    <div
+      v-if="coverImage"
+      class="post-cover-fade absolute inset-x-0 top-0 z-0 h-64 overflow-hidden sm:h-80 md:h-96 motion-safe:transition-opacity motion-safe:duration-320 motion-safe:ease-linear"
+      :class="postLeaving ? 'opacity-0' : fromListing && !coverEnterPlayed ? 'post-cover-enter' : 'opacity-100'"
+      aria-hidden="true"
+      @animationend="onCoverEnterAnimationEnd"
+      @pointerenter="onCoverEnter"
+      @pointerleave="onCoverLeave"
+    >
+      <img
+        :src="coverImage"
+        alt=""
+        class="size-full object-cover object-center select-none will-change-[filter]"
+        :class="coverHovered ? 'post-cover-clear' : undefined"
+      >
+    </div>
+    <main
+      class="relative z-1 flex flex-col items-center"
+      :class="coverImage ? 'pointer-events-none' : ''"
+    >
       <div class="w-full flex flex-col mx-auto max-w-200">
         <header
           class="flex w-full items-end pt-30"
@@ -73,7 +129,7 @@ watch(isPost, (value) => {
           </div>
 
           <div
-            class="shrink-0 flex flex-col gap-3 motion-safe:transition-all motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]"
+            class="pointer-events-auto shrink-0 flex flex-col gap-3 motion-safe:transition-all motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]"
             :class="isPost ? 'items-center' : 'items-end'"
           >
             <div
@@ -96,15 +152,21 @@ watch(isPost, (value) => {
           :class="isPost
             ? [
                 'prose dark:prose-invert max-w-none writing-article',
-                contentReady ? 'slide-enter-content' : 'h-0 overflow-hidden opacity-0 pointer-events-none'
+                contentReady && slideEnterReady
+                  ? 'slide-enter-content'
+                  : contentReady
+                    ? 'opacity-0'
+                    : 'h-0 overflow-hidden opacity-0 pointer-events-none'
               ]
             : 'w-full'"
           :data-leaving="postLeaving || undefined"
         >
-          <h1 v-if="isPost && contentReady" :key="route.path" class="text-center">
+          <h1 v-if="isPost && contentReady" :key="route.path" class="pointer-events-none text-center">
             {{ postTitle }}
           </h1>
-          <slot />
+          <div class="pointer-events-auto">
+            <slot />
+          </div>
         </div>
       </div>
     </main>
@@ -112,6 +174,40 @@ watch(isPost, (value) => {
 </template>
 
 <style>
+.post-cover-fade {
+  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+}
+
+.post-cover-fade img {
+  filter: blur(20px);
+}
+
+.post-cover-fade img.post-cover-clear {
+  filter: blur(0);
+}
+
+@keyframes post-cover-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .post-cover-fade img {
+    transition: filter 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .post-cover-enter {
+    animation: post-cover-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-cover-enter {
+    opacity: 1;
+  }
+}
+
 .writing-article h2 a,
 .writing-article h3 a,
 .writing-article h4 a,
@@ -150,5 +246,30 @@ watch(isPost, (value) => {
 .dark .writing-article h5::after,
 .dark .writing-article h6::after {
   border-bottom: 1px dashed var(--ui-color-neutral-900);
+}
+
+.writing-article :not(pre) > code {
+  display: inline;
+  font-family: inherit;
+  font-size: 0.875em;
+  line-height: inherit;
+  vertical-align: 0.05em;
+  border-radius: 0;
+  padding: 0.085em 0.3em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  border: none;
+  background-color: var(--ui-color-neutral-200);
+  color: var(--ui-color-neutral-900);
+  margin: 0 0.05em;
+}
+
+.dark .writing-article :not(pre) > code {
+  background-color: var(--ui-color-neutral-800);
+  color: var(--ui-color-neutral-100);
+}
+
+.writing-article code::after, .writing-article code::before {
+  content: none;
 }
 </style>

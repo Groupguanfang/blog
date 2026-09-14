@@ -21,6 +21,9 @@ definePageMeta({
 
 const { path } = useRoute()
 const { data } = await useAsyncData(`post-${path}`, () => queryCollection('posts').path(path).first())
+const root = useTemplateRef<HTMLElement>('root')
+
+useSlideEnterStagger(root)
 
 const postLeaving = useState('writing-post-leaving', () => false)
 const prefersReducedMotion = usePreferredReducedMotion()
@@ -35,7 +38,7 @@ onBeforeRouteLeave(async (to, from) => {
 </script>
 
 <template>
-  <div>
+  <div ref="root">
     <ContentRenderer
       v-if="data"
       :key="path"

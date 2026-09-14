@@ -65,7 +65,7 @@ function onCardClick(event: MouseEvent) {
           :key="index"
           v-bind="post"
           :to="post.path"
-          :image="resolveContentImage(post.meta.image as string)"
+          :image="resolveContentImage(post.meta.image as string, post.path)"
         />
       </UBlogPosts>
     </div>
