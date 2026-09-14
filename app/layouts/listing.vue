@@ -109,7 +109,7 @@ watch(isPost, (value, _oldValue, onCleanup) => {
     </div>
     <main class="relative z-1 flex flex-col items-center" :class="coverImage ? 'pointer-events-none' : ''">
       <div class="w-full flex flex-col mx-auto max-w-200">
-        <header class="flex w-full items-end pt-30" :class="isPost ? 'mb-3' : ''">
+        <header class="flex w-full items-end pt-30 px-3" :class="isPost ? 'mb-3' : ''">
           <div
             class="min-w-0 overflow-hidden prose dark:prose-invert max-w-none motion-safe:transition-opacity motion-safe:duration-320 motion-safe:ease-linear"
             :class="titleFaded ? 'opacity-0 pointer-events-none' : ''"

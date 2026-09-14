@@ -7,7 +7,7 @@ const { container = false } = defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-col items-center w-full px-3 md:px-10">
+  <div class="flex flex-col items-center w-full overflow-x-clip px-3 md:px-10 [--layout-gutter:0.75rem] md:[--layout-gutter:2.5rem]">
     <div class="border-b w-full border-gray-200 dark:border-neutral-900 border-dashed mt-3 md:mt-10 absolute top-0 left-0 -z-1" />
     <div
       v-bind="$attrs"
